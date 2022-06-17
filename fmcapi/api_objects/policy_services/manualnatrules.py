@@ -44,6 +44,7 @@ class ManualNatRules(APIClassTemplate):
     ]
     VALID_FOR_KWARGS = VALID_JSON_DATA + [
         "section",
+        "targetIndex",
     ]
     PREFIX_URL = "/policy/ftdnatpolicies"
     REQUIRED_FOR_POST = ["nat_id"]
@@ -81,6 +82,8 @@ class ManualNatRules(APIClassTemplate):
 
         if "section" in self.__dict__:
             url = f"{url}section={self.section}&"
+        if "targetIndex" in self.__dict__:
+            url = f"{url}targetIndex={self.targetIndex}&"
 
         return url[:-1]
 
@@ -103,6 +106,9 @@ class ManualNatRules(APIClassTemplate):
 
         if "section" in kwargs:
             self.section = kwargs["section"]
+
+        if "targetIndex" in kwargs:
+            self.targetIndex = kwargs["targetIndex"]
 
     def nat_policy(self, name):
         """
